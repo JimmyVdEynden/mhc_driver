@@ -1,0 +1,12 @@
+channels:
+- conda-forge
+- bioconda
+dependencies:
+- r-base=3.6.1
+- r-essentials=3.6.0
+- perl-env=1.04
+- bioconductor-ensdb.hsapiens.v86=2.99.0
+- r-svglite=1.2.2
+- r-writexls=5.0.0
+# - bioconductor-biocinstaller
+
