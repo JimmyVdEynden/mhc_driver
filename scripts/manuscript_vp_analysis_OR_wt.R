@@ -8,6 +8,7 @@ vp_logreg_wp_mut$OR
 # [1] 1.200097 1.099298
 
 (as.numeric(vp_logreg_wp_mut["wt","OR"])-1)/(as.numeric(vp_logreg_wp_mut["mut","OR"])-1) # 49.6%
+# [1] 0.4962491
 
 # Plot
 for(i in 1:2){

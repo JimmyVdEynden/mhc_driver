@@ -9,8 +9,8 @@ loo<- readRDS("results/data/vp_logreg_loo.rds")
 loo<- loo[order(loo$OR),]
 
 # Calculate % contribution based on LOO
-loo$rel_effect<- 1-(loo$OR - 1)/(baseline$OR-1)
+loo$rel_effect<- 1-(as.numeric(loo$OR) - 1)/(baseline$OR-1)
 
 # Get & save mutations
-muts<- loo$mutation[loo$rel_effect>0.01]
+muts<- loo$mut[loo$rel_effect>0.01]
 saveRDS(muts, "data/driver_muts13.rds")

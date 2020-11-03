@@ -13,7 +13,7 @@ loo<- readRDS("results/data/vp_logreg_loo.rds")
 loo<- loo[order(loo$OR),]
 
 # Calculate % contribution based on LOO
-loo$rel_effect<- 1-(loo$OR - 1)/(baseline$OR-1)
+loo$rel_effect<- 1-(as.numeric(loo$OR) - 1)/(baseline$OR-1)
 
 # Get muts
 muts<- readRDS("data/driver_muts13.rds")
@@ -22,7 +22,7 @@ muts<- readRDS("data/driver_muts13.rds")
 for(i in 1:2){
   if(i==1) pdf("results/figs/manuscript_vp_loo.pdf")
   else svglite::svglite("results/figs/manuscript_vp_loo.svg")
-  barplot(100*loo$rel_effect[1:20],names.arg = loo$mutation[1:20],las=2,ylab= "Effect (%)")
+  barplot(100*loo$rel_effect[1:20],names.arg = loo$mut[1:20],las=2,ylab= "Effect (%)")
   abline(h=1,lty=2)
   dev.off()
 }
@@ -30,7 +30,7 @@ for(i in 1:2){
 # Illustrate effect on BRAF + cumul
 #####################################
 
-BRAF_t<- data.frame(OR=c(baseline$OR,loo$OR[1],OR_excl13["OR"]),CI_low=c(baseline$`2.5 %`,loo$`2.5 %`[1],OR_excl13["2.5 %"]),CI_high=c(baseline$`97.5 %`,loo$`97.5 %`[1],OR_excl13["97.5 %"]))
+BRAF_t<- data.frame(OR=as.numeric(c(baseline$OR,loo$OR[1],OR_excl13["OR"])),CI_low=as.numeric(c(baseline$`2.5 %`,loo$ci_low[1],OR_excl13["2.5 %"])),CI_high=as.numeric(c(baseline$`97.5 %`,loo$ci_high[1],OR_excl13["97.5 %"])))
 
 for(i in 1:2){
   if(i==1) pdf("results/figs/manuscript_vp_loo_concept.pdf")
