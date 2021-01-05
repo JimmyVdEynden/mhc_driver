@@ -8,7 +8,7 @@ output:
     toc_float: yes
 ---
 
-This notebook contains high level information on the bioinformatics pipeline that was used for the analysis reported in **Claeys A, Marchal K, Van den Eynden J. Low immunogenicity of common cancer hot spot mutations resulting in false immunogenic selection signals, 2020**
+This notebook contains high level information on the bioinformatics pipeline that was used for the analysis reported in **Claeys A, Luits T, Marchal K, Van den Eynden J. Low immunogenicity of common cancer hot spot mutations resulting in false immunogenic selection signals, 2021**
 
 # Environment 
 
@@ -22,6 +22,7 @@ The following data were downloaded from external sources:
   - TCGA mutation data: MC3 calls
   - TCGA cancer ids
   - Cancer Gene Census data from cosmic
+  - 1000 genomes HLA alleles
 
 Download scripts are provided under *scripts/downloads/* in the corresponding folders.
 
@@ -46,7 +47,7 @@ Driver mutations were selected using the following criteria:
 ```{r,eval=F}
   # Get the required variables from mc3 maf files
   source("scripts/get_mut_data.R")
-  # Create mutaion matrix
+  # Create mutation matrix
   source("scripts/create_mut_matrix.R")
 ```
 
@@ -87,6 +88,22 @@ PHBR was calculated for each mutation for the the prototypical genotype, for mut
   source("scripts/get_HLA_subst.R")
 ```
 
+## Other mutation datasets
+
+Randomly select:
+- 500 non-recurrent not in CGC
+- 500 non-recurrent in CGC
+- 500 recurrent not in CGC
+
+```{r, eval=F}
+  source("scripts/get_mutation_datasets.R")
+```
+
+Add 500 random unobserved mutations, merge and add evolutionary conservation scores
+
+```{r, eval=F}
+  source("scripts/merge_mutation_datasets.R")
+```
 
 # Analysis as reported in the manuscript
 
@@ -189,3 +206,54 @@ Plot
 ```{r}
   source("scripts/manuscript_methodology.R")
 ```
+
+## S2) Suppl. analysis on TCGA data
+
+```{r, eval=F}
+  # WT affinities
+  source("scripts/get_HLA_TCGA_wt.R")
+  # Get baseline ORs
+  source("scripts/manuscript_TCGA_logreg_wp.R")
+  # LOO
+  source("scripts/manuscript_LOO_analysis_TCGA.R")
+```
+
+Plot
+```{r}
+  source("scripts/manuscript_TCGA_analysis.R")
+```
+
+## S3) Suppl. analysis using 1kg population alleles
+
+```{r, eval=F}
+  # Get HLA alleles & perform logreg
+  source("scripts/manuscript_1kg.R")
+  # LOO
+  source("scripts/manuscript_LOO_analysis_1kg.R")
+```
+
+Plot
+```{r}
+  source("scripts/1kg_analysis.R")
+```
+
+## S4) Suppl. analysis on individual alleles
+
+Calculate PBR
+```{r, eval=F}
+  source("scripts/manuscript_alleles_OR.R")
+```
+
+Plot
+```{r}
+  source("scripts/manuscript_alleles_OR_analysis.R")
+```
+
+## S5) Suppl. analysis conservation scores
+
+Plot
+```{r}
+  source("scripts/manuscript_cons_analysis.R")
+```
+
+
