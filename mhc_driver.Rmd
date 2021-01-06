@@ -28,8 +28,7 @@ Download scripts are provided under *scripts/downloads/* in the corresponding fo
 
 ## Processed data
 
-Processed data (referred to in data/) are available at Zenodo ...:
-  - ...: *....rds*
+Processed data (referred to in data/) are available at Zenodo 10.5281/zenodo.4419692
 
 # Data processing
 
@@ -103,6 +102,14 @@ Add 500 random unobserved mutations, merge and add evolutionary conservation sco
 
 ```{r, eval=F}
   source("scripts/merge_mutation_datasets.R")
+```
+
+## CCLE data
+
+Merge CCLE mutation data and HLA cells. Create HLA and mutation matrices.
+
+```{r, eval=F}
+  source("scripts/create_CCLE_data.R")
 ```
 
 # Analysis as reported in the manuscript
@@ -223,7 +230,13 @@ Plot
   source("scripts/manuscript_TCGA_analysis.R")
 ```
 
-## S3) Suppl. analysis using 1kg population alleles
+## S3) Suppl. analysis using CCLE data
+
+```{r}
+  source("scripts/manuscript_CCLE_analysis.R")
+```
+
+## S4) Suppl. analysis using 1kg population alleles
 
 ```{r, eval=F}
   # Get HLA alleles & perform logreg
@@ -237,7 +250,7 @@ Plot
   source("scripts/1kg_analysis.R")
 ```
 
-## S4) Suppl. analysis on individual alleles
+## S5) Suppl. analysis on individual alleles
 
 Calculate PBR
 ```{r, eval=F}
@@ -249,7 +262,7 @@ Plot
   source("scripts/manuscript_alleles_OR_analysis.R")
 ```
 
-## S5) Suppl. analysis conservation scores
+## S6) Suppl. analysis conservation scores
 
 Plot
 ```{r}
