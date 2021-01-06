@@ -8,7 +8,7 @@ output:
     toc_float: yes
 ---
 
-This notebook contains high level information on the bioinformatics pipeline that was used for the analysis reported in **Claeys A, Luits T, Marchal K, Van den Eynden J. Low immunogenicity of common cancer hot spot mutations resulting in false immunogenic selection signals, 2021**
+This notebook contains high level information on the bioinformatics pipeline that was used for the analysis reported in **Claeys A, Luijts T, Marchal K, Van den Eynden J. Low immunogenicity of common cancer hot spot mutations resulting in false immunogenic selection signals, 2021**
 
 # Environment 
 
@@ -23,6 +23,7 @@ The following data were downloaded from external sources:
   - TCGA cancer ids
   - Cancer Gene Census data from cosmic
   - 1000 genomes HLA alleles
+  - Cancer Cell Line Encyclopedia (CCLE): mutation data and HLC calls
 
 Download scripts are provided under *scripts/downloads/* in the corresponding folders.
 
